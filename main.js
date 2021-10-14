@@ -53,10 +53,8 @@ async function generateFavoriteXkcd() {
 }
 
 async function generateConversation(sentenceAmount) {
-    let result
     for (let i = 0; i < sentenceAmount; i++) {
-        result = await generateFavoriteXkcd()
-        console.log(`${generateName()}:\n    ${result}`)
+        console.log(`${generateName()}:\n    ${await generateFavoriteXkcd()}`)
     }
 }
 
