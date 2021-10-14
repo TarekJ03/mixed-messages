@@ -23,18 +23,18 @@ async function generateXkcdLink() {
     return url
 }
 
-function generateSentence() {
-    const sentences = [
-        "I really like ",
-        "My favorite is ",
-        "The best definitely is ",
-        "There's no better than "
-    ]
-    return sentences[randint(sentences.length-1)]
-}
-
 async function generateFavoriteXkcd() {
-    return `${generateSentence()}${await generateXkcdLink()}`
+    const xkcdLink = await generateXkcdLink()
+    const sentences = [
+        `I really like ${xkcdLink}.`,
+        `My favorite is ${xkcdLink}.`,
+        `The best definitely is ${xkcdLink}.`,
+        `There's no better than ${xkcdLink}.`,
+        `No doubt in my mind, ${xkcdLink} is the best.`,
+        `Well, I believe ${xkcdLink} to be the GOAT.`
+    ]
+    const sentenceIndex = randint(sentences.length-1)
+    return sentences.splice(sentenceIndex, 1)[0]
 }
 
 generateFavoriteXkcd().then(result => console.log(result))
