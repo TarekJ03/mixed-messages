@@ -1,6 +1,10 @@
 const fetch = require("isomorphic-fetch")
 const { JSDOM } = require("jsdom")
 
+function randint(upperBound) {
+    return Math.floor(Math.random()*upperBound)
+}
+
 async function fetchAvailableComics() {
     const response = await fetch("https://xkcd.com")
     const text = await response.text()
@@ -12,7 +16,7 @@ async function fetchAvailableComics() {
 
 async function generateXkcdLink() {
     const availableComics = await fetchAvailableComics()
-    const url = await `https://xkcd.com/${Math.floor(Math.random() * availableComics)}`
+    const url = await `https://xkcd.com/${randint(availableComics)}`
     return url
 }
 
@@ -23,7 +27,7 @@ function generateSentence() {
         "The best definitely is ",
         "There's no better than "
     ]
-    return sentences[Math.floor(Math.random()*sentences.length)]
+    return sentences[Math.floor(randint(sentences.length-1))]
 }
 
 async function generateFavoriteXkcd() {
