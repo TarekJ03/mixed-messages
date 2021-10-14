@@ -10,7 +10,7 @@ async function fetchAvailableComics() {
     const text = await response.text()
     const dom = new JSDOM(text)
     const url = dom.window.document.querySelector("#middleContainer > a:nth-child(6)").textContent
-    result = url.split("/")
+    const result = url.split("/")
     return parseInt(result[result.length-2])
 }
 
