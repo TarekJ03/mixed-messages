@@ -37,4 +37,12 @@ async function generateFavoriteXkcd() {
     return sentences.splice(sentenceIndex, 1)[0]
 }
 
-generateFavoriteXkcd().then(result => console.log(result))
+async function generateConversation(sentenceAmount) {
+    let result
+    for (let i = 0; i < sentenceAmount; i++) {
+        result = await generateFavoriteXkcd()
+        console.log(result)
+    }
+}
+
+generateConversation(7)
