@@ -4,7 +4,7 @@ let availableComics
 let sentences
 
 function randint(upperBound) {
-    return Math.floor(Math.random()*upperBound)
+    return Math.floor(Math.random() * upperBound)
 }
 
 async function fetchAvailableComics() {
@@ -13,7 +13,7 @@ async function fetchAvailableComics() {
     const dom = new JSDOM(text)
     const url = dom.window.document.querySelector("#middleContainer > a:nth-child(6)").textContent
     const result = url.split("/")
-    return parseInt(result[result.length-2])
+    return parseInt(result[result.length - 2])
 }
 
 async function generateXkcdLink() {
@@ -36,7 +36,7 @@ async function generateFavoriteXkcd() {
             `Well, I believe ${xkcdLink} to be the GOAT.`
         ]
     }
-    const sentenceIndex = randint(sentences.length-1)
+    const sentenceIndex = randint(sentences.length - 1)
     return sentences.splice(sentenceIndex, 1)[0]
 }
 
