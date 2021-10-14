@@ -1,6 +1,7 @@
 import fetch from "isomorphic-fetch"
 import { JSDOM } from "jsdom"
 let availableComics
+let sentences
 
 function randint(upperBound) {
     return Math.floor(Math.random()*upperBound)
@@ -25,14 +26,16 @@ async function generateXkcdLink() {
 
 async function generateFavoriteXkcd() {
     const xkcdLink = await generateXkcdLink()
-    const sentences = [
-        `I really like ${xkcdLink}.`,
-        `My favorite is ${xkcdLink}.`,
-        `The best definitely is ${xkcdLink}.`,
-        `There's no better than ${xkcdLink}.`,
-        `No doubt in my mind, ${xkcdLink} is the best.`,
-        `Well, I believe ${xkcdLink} to be the GOAT.`
-    ]
+    if (!sentences || !sentences.length) {
+        sentences = [
+            `I really like ${xkcdLink}.`,
+            `My favorite is ${xkcdLink}.`,
+            `The best definitely is ${xkcdLink}.`,
+            `There's no better than ${xkcdLink}.`,
+            `No doubt in my mind, ${xkcdLink} is the best.`,
+            `Well, I believe ${xkcdLink} to be the GOAT.`
+        ]
+    }
     const sentenceIndex = randint(sentences.length-1)
     return sentences.splice(sentenceIndex, 1)[0]
 }
