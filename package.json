@@ -1,6 +1,8 @@
 {
   "type": "module",
   "dependencies": {
+    "@stdlib/datasets-female-first-names-en": "0.0.8",
+    "@stdlib/datasets-male-first-names-en": "0.0.8",
     "isomorphic-fetch": "^3.0.0",
     "jsdom": "^18.0.0"
   }

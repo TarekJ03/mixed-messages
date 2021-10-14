@@ -1,10 +1,22 @@
 import fetch from "isomorphic-fetch"
 import { JSDOM } from "jsdom"
+import getMaleNames from "@stdlib/datasets-male-first-names-en"
+import getFemaleNames from "@stdlib/datasets-female-first-names-en"
+const maleNames = getMaleNames()
+const femaleNames = getFemaleNames()
 let availableComics
 let sentences
 
 function randint(upperBound) {
     return Math.floor(Math.random() * upperBound)
+}
+
+function generateName(){
+    if (randint(2)){
+        return maleNames[randint(maleNames.length)]
+    } else {
+        return femaleNames[randint(femaleNames.length)]
+    }
 }
 
 async function fetchAvailableComics() {
@@ -44,7 +56,7 @@ async function generateConversation(sentenceAmount) {
     let result
     for (let i = 0; i < sentenceAmount; i++) {
         result = await generateFavoriteXkcd()
-        console.log(result)
+        console.log(`${generateName()}:\n    ${result}`)
     }
 }
 
