@@ -1,5 +1,19 @@
-function generateXkcdLink() {
-    return `https://xkcd.com/${Math.floor(Math.random()*2527)}`
+const fetch = require("isomorphic-fetch")
+const { JSDOM } = require("jsdom")
+
+async function fetchAvailableComics() {
+    const response = await fetch("https://xkcd.com")
+    const text = await response.text()
+    const dom = await new JSDOM(text)
+    const url = await dom.window.document.querySelector("#middleContainer > a:nth-child(6)").textContent
+    result = url.split("/")
+    return parseInt(result[result.length-2])
+}
+
+async function generateXkcdLink() {
+    const availableComics = await fetchAvailableComics()
+    const url = await `https://xkcd.com/${Math.floor(Math.random() * availableComics)}`
+    return url
 }
 
 function generateSentence() {
@@ -12,8 +26,8 @@ function generateSentence() {
     return sentences[Math.floor(Math.random()*sentences.length)]
 }
 
-function generateFavoriteXkcd() {
-    return `${generateSentence()}${generateXkcdLink()}`
+async function generateFavoriteXkcd() {
+    return `${generateSentence()}${await generateXkcdLink()}`
 }
 
-console.log(generateFavoriteXkcd())
+generateFavoriteXkcd().then(result => console.log(result))
