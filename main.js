@@ -11,8 +11,8 @@ function randint(upperBound) {
     return Math.floor(Math.random() * upperBound)
 }
 
-function generateName(){
-    if (randint(2)){
+function generateName() {
+    if (randint(2)) {
         return maleNames[randint(maleNames.length)]
     } else {
         return femaleNames[randint(femaleNames.length)]
