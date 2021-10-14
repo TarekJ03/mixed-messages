@@ -1,5 +1,6 @@
 import fetch from "isomorphic-fetch"
 import { JSDOM } from "jsdom"
+let availableComics
 
 function randint(upperBound) {
     return Math.floor(Math.random()*upperBound)
@@ -15,7 +16,10 @@ async function fetchAvailableComics() {
 }
 
 async function generateXkcdLink() {
-    const url = `https://xkcd.com/${randint( await fetchAvailableComics())}`
+    if (availableComics === undefined) {
+        availableComics = await fetchAvailableComics()
+    }
+    const url = `https://xkcd.com/${randint(availableComics)}`
     return url
 }
 
