@@ -2,8 +2,8 @@ import fetch from "isomorphic-fetch"
 import { JSDOM } from "jsdom"
 import getMaleNames from "@stdlib/datasets-male-first-names-en"
 import getFemaleNames from "@stdlib/datasets-female-first-names-en"
-const maleNames = getMaleNames()
-const femaleNames = getFemaleNames()
+let maleNames = getMaleNames()
+let femaleNames = getFemaleNames()
 let availableComics
 let sentences
 
@@ -12,11 +12,19 @@ function randint(upperBound) {
 }
 
 function generateName() {
+    let names
     if (randint(2)) {
-        return maleNames[randint(maleNames.length)]
+        if (!maleNames || !maleNames.length) {
+            maleNames = getMaleNames()
+        }
+        names = maleNames
     } else {
-        return femaleNames[randint(femaleNames.length)]
+        if (!femaleNames || !femaleNames.length) {
+            femaleNames = getFemaleNames()
+        }
+        names = femaleNames
     }
+    return names.splice(randint(names.length - 1), 1)[0]
 }
 
 async function fetchAvailableComics() {
