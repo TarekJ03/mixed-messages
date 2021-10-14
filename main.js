@@ -1,5 +1,5 @@
-const fetch = require("isomorphic-fetch")
-const { JSDOM } = require("jsdom")
+import fetch from "isomorphic-fetch"
+import { JSDOM } from "jsdom"
 
 function randint(upperBound) {
     return Math.floor(Math.random()*upperBound)
