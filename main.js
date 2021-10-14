@@ -26,7 +26,7 @@ function generateSentence() {
         "The best definitely is ",
         "There's no better than "
     ]
-    return sentences[Math.floor(randint(sentences.length-1))]
+    return sentences[randint(sentences.length-1)]
 }
 
 async function generateFavoriteXkcd() {
