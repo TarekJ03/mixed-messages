@@ -13,6 +13,7 @@ First, the amount of available comics is fetched by loading xkcd.com and reading
 ```bash
 $ cd mixed-messages
 $ npm install
+$ node main.js
 ```
 
   The amount of generated people and opinions can be controlled by changing the argument in the last line.
