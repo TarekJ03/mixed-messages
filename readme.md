@@ -6,9 +6,7 @@ I wanted to create a script that generates a conversation between imaginary peop
 
 ## How does it work?
 
-First, the amount of available comics is fetched by loading xkcd.com and reading out the current comic's permalink. Then, since the comics are consecutively numbered, we can generate a random number 
-
-between 1 and the number of comics available for each desired person. The person's name is determined by picking a random name from stdlib's [female](https://www.npmjs.com/package/@stdlib/datasets-female-first-names-en) or [male](https://www.npmjs.com/package/@stdlib/datasets-male-first-names-en) name dataset. The sentence templates and names aren't reused until each has been used, since they're removed from the `sentences` /`maleNames`/`femaleNames` list when chosen. Once the list is empty, it's refilled again.
+First, the amount of available comics is fetched by loading xkcd.com and reading out the current comic's permalink. Then, since the comics are consecutively numbered, we can generate a random number between 1 and the number of comics available for each desired person. The person's name is determined by picking a random name from stdlib's [female](https://www.npmjs.com/package/@stdlib/datasets-female-first-names-en) or [male](https://www.npmjs.com/package/@stdlib/datasets-male-first-names-en) name dataset. The sentence templates and names aren't reused until each has been used, since they're removed from the `sentences` /`maleNames`/`femaleNames` list when chosen. Once the list is empty, it's refilled again.
 
 ## Installation and usage
 
